@@ -1,5 +1,7 @@
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { fabric } from 'fabric';
+import jsPDF from 'jspdf';
 
 @Component({
   selector: 'angular-editor-fabric-js',
@@ -617,6 +619,7 @@ export class FabricjsEditorComponent implements AfterViewInit {
     });
 
   }
+
 
   rasterizeJSON() {
     this.json = JSON.stringify(this.canvas, null, 2);

@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import jsPDF from 'jspdf';
 import { FabricjsEditorComponent } from 'projects/angular-editor-fabric-js/src/public-api';
 
 @Component({
@@ -13,6 +14,26 @@ export class AppComponent {
 
   public rasterize() {
     this.canvas.rasterize();
+  }
+
+  public rasterizePDF(){
+    var __CANVAS = document.getElementById('canvas');
+    let width = __CANVAS.clientWidth; 
+    let height = __CANVAS.clientHeight;
+    let pdf;
+    // let pdf = new jsPDF('portrait','px',[height, width]);
+    //set the orientation
+    if(width > height){
+      pdf = new jsPDF('l', 'px', [width, height]);
+    }
+    else{
+      pdf = new jsPDF('p', 'px', [height, width]);
+    }
+    //then we get the dimensions from the 'pdf' file itself
+    width = pdf.internal.pageSize.getWidth();
+    height = pdf.internal.pageSize.getHeight();
+    pdf.addImage(__CANVAS, 'PNG', 0, 0,width,height);
+    pdf.save("download.pdf");
   }
 
   public rasterizeSVG() {

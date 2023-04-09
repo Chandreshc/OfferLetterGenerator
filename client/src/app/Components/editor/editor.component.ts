@@ -1,16 +1,37 @@
-import { Component, ViewChild } from '@angular/core';
+// import { Component, OnInit } from '@angular/core';
+
+// @Component({
+//   selector: 'app-editor',
+//   templateUrl: './editor.component.html',
+//   styleUrls: ['./editor.component.scss']
+// })
+// export class editorComponent implements OnInit {
+
+//   constructor() { }
+
+//   ngOnInit(): void {
+//   }
+
+// }
+
+import { Component, ViewChild, OnInit } from '@angular/core';
 import jsPDF from 'jspdf';
 import { FabricjsEditorComponent } from 'projects/angular-editor-fabric-js/src/public-api';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: 'app-editor',
+  templateUrl: './editor.component.html',
+  styleUrls: ['./editor.component.scss']
 })
-export class AppComponent {
+export class EditorComponent implements OnInit {
   title = 'angular-editor-fabric-js';
 
   @ViewChild('canvas', { static: false }) canvas: FabricjsEditorComponent;
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
 
   public rasterize() {
     this.canvas.rasterize();
@@ -20,9 +41,8 @@ export class AppComponent {
     var __CANVAS = document.getElementById('canvas');
     let width = __CANVAS.clientWidth; 
     let height = __CANVAS.clientHeight;
-    console.log(height, width);
     let pdf;
-    // let pdf = new jsPDF('p','px',[height, width]);
+    // let pdf = new jsPDF('portrait','px',[height, width]);
     //set the orientation
     if(width > height){
       pdf = new jsPDF('l', 'px', [width, height]);
@@ -165,3 +185,4 @@ export class AppComponent {
     this.canvas.drawingMode();
   }
 }
+

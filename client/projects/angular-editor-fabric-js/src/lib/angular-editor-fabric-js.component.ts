@@ -51,7 +51,7 @@ export class FabricjsEditorComponent implements AfterViewInit {
       hoverCursor: 'pointer',
       selection: true,
       selectionBorderColor: 'blue',
-      isDrawingMode: true
+      isDrawingMode: false //changed from 'true' to 'false' to disable free draw mode at start
     });
 
     this.canvas.on({

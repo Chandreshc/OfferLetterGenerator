@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { EditorComponent } from './Components/editor/editor.component';
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { DashboardComponent } from './Components/dashboard/dashboard.component';
     BrowserModule,
     FabricjsEditorModule,
     FormsModule,
-    ColorPickerModule
+    ColorPickerModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -53,9 +53,9 @@ export class AppComponent {
     this.canvas.confirmClear();
   }
 
-  public changeSize() {
-    this.canvas.changeSize();
-  }
+  // public changeSize() {
+  //   this.canvas.changeSize();
+  // }
 
   public addText() {
     this.canvas.addText();

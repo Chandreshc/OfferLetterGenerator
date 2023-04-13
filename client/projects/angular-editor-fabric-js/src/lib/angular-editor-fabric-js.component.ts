@@ -115,10 +115,10 @@ export class FabricjsEditorComponent implements AfterViewInit {
 
   // Block "Size"
 
-  changeSize() {
-    this.canvas.setWidth(this.size.width);
-    this.canvas.setHeight(this.size.height);
-  }
+  // changeSize() {
+  //   this.canvas.setWidth(this.size.width);
+  //   this.canvas.setHeight(this.size.height);
+  // }
 
   // Block "Add text"
 

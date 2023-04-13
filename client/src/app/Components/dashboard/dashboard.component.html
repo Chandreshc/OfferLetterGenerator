@@ -6,10 +6,10 @@
     <section>
 
         <!-- create new template section -->
-        <button class="new-section" (click)="gotoeditor()">
+        <a class="new-section" [href]="'editor'">
             <img src="../../../assets/img/clarity_add-line.svg" alt="">
             New Template
-        </button>
+        </a>
 
         <hr>
 
@@ -78,3 +78,4 @@
         </div>
     </section>
 </div>
+<router-outlet></router-outlet>

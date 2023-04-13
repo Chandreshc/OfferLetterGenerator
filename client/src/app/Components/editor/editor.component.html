@@ -5,7 +5,7 @@
             <input type="text" title="fileTitle" value="Untitled Template">
         </div>
         <div>
-          <button class="btn-close"><img src="../../../assets/svgs/material-symbols_close.svg" alt=""> Close Editor</button>
+          <a class="btn-close" [href]="'dashboard'"><img src="../../../assets/svgs/material-symbols_close.svg" alt=""> Close Editor</a>
       </div>
     </div>
     <hr>
@@ -64,7 +64,8 @@
                 <div class="card-header">Add text</div>
                 <div class="card-body">
                     <div class="input-group add-text-group">
-                        <input title="textbox" type="text" class="form-control" [(ngModel)]="canvas.textString" placeholder="Any sentence">
+                        <!-- <input title="textbox" type="text" class="form-control" [(ngModel)]="canvas.textString" placeholder="Any sentence"> -->
+                        <textarea class="form-control"  name="textarea" id="" cols="30" placeholder="Write your sentence" [(ngModel)]="canvas.textString" rows="10"></textarea>
                         <div class="input-group-append">
                             <span>
                                 <button id="add-text" data-tosggle="tooltip" data-placement="bottom" title="Add text" (click)="addText()">
@@ -333,3 +334,4 @@
     <br>
     <br>
 </div>
+<router-outlet></router-outlet>

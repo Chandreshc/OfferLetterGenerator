@@ -24,9 +24,14 @@ import { FabricjsEditorComponent } from 'projects/angular-editor-fabric-js/src/p
   styleUrls: ['./editor.component.scss']
 })
 export class EditorComponent implements OnInit {
+
   title = 'angular-editor-fabric-js';
 
   @ViewChild('canvas', { static: false }) canvas: FabricjsEditorComponent;
+  addName: string = '';
+  doAddName(){
+    this.addName+=' {name}';
+  }
 
   constructor() { }
 
@@ -185,4 +190,3 @@ export class EditorComponent implements OnInit {
     this.canvas.drawingMode();
   }
 }
-

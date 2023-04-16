@@ -176,8 +176,8 @@ export class FabricjsEditorComponent implements AfterViewInit {
           cornerSize: 10,
           hasRotatingPoint: true
         });
-        image.scaleToWidth(200);
-        image.scaleToHeight(200);
+        image.scaleToWidth(100);
+        image.scaleToHeight(100);
         this.extend(image, this.randomId());
         this.canvas.add(image);
         this.selectItemAfterAdded(image);

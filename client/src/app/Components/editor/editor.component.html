@@ -65,7 +65,9 @@
                 <div class="card-body">
                     <div class="input-group add-text-group">
                         <!-- <input title="textbox" type="text" class="form-control" [(ngModel)]="canvas.textString" placeholder="Any sentence"> -->
-                        <textarea class="form-control"  name="textarea" id="" cols="30" placeholder="Write your sentence" [(ngModel)]="canvas.textString" rows="10"></textarea>
+                        <textarea class="form-control w-100"  name="textarea" [(ngModel)]="addName" cols="30" placeholder="Write your sentence" [(ngModel)]="canvas.textString" rows="10"></textarea>
+                        <!-- buttons to add cutom fields -->
+                        <button class="w-100" id="btn" (click)="doAddName()">Add Name Field</button>
                         <div class="input-group-append">
                             <span>
                                 <button id="add-text" data-tosggle="tooltip" data-placement="bottom" title="Add text" (click)="addText()">

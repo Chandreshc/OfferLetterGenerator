@@ -31,8 +31,8 @@ export class FabricjsEditorComponent implements AfterViewInit {
   public textString: string;
   public url: string | ArrayBuffer = '';
   public size: any = {
-    width: 500,
-    height: 800
+    width: 595,
+    height: 842
   };
 
   public json: any;

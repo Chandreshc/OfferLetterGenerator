@@ -55,7 +55,28 @@ export class EditorComponent implements OnInit {
     height = pdf.internal.pageSize.getHeight();
     pdf.addImage(__CANVAS, 'PNG', 0, 0,width,height);
     pdf.save("download.pdf");
+    // let canv = <HTMLCanvasElement> document.getElementById('canvas');
+    // var imgData = canv.toDataURL("image/jpeg", 1.0);
+    // var pdf = new jsPDF();
+    // console.log(imgData);
+    // let width = canv.clientWidth; 
+    // let height = canv.clientHeight;
+    // pdf.addImage(imgData, 'JPEG', 0, 0, width, height);
+    // pdf.save("download.pdf");
   }
+
+  // public zoomInOut($event){
+  //   let canv = <HTMLCanvasElement> document.getElementById('canvas');
+  //   let context = canv.getContext('2d');
+  //   console.log(context);
+  //   let scaleele = <HTMLInputElement> document.getElementById('vol');
+  //   let scale = Number(scaleele.value);
+  //   context.scale(scale,scale);
+  //   context.save();
+    
+  //   this.canvas.size.width *= scale;
+  //   this.canvas.size.height *= scale;
+  // }
 
   public rasterizeSVG() {
     this.canvas.rasterizeSVG();

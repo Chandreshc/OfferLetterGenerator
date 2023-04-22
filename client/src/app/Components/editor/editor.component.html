@@ -117,8 +117,9 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-6">
+        <div class="col-xl-6 editorcontainer">
             <angular-editor-fabric-js #canvas></angular-editor-fabric-js>
+            <!-- <input type="range" id="vol" name="vol" min="-2" max="2" [defaultValue]="0" (change)="zoomInOut($event);"> -->
         </div>
         <div class="col-xl-3">
             <div class="card">
@@ -316,6 +317,10 @@
                                 <button data-toggle="tooltip" data-placement="bottom" title="Save in localStorage" type="button"
                                     class="m-1" (click)="saveCanvasToJSON();">
                                     <img src="../../../assets/svgs/material-symbols_save.svg" alt=""> Save local</button>
+
+                                    <!-- <button data-toggle="tooltip" data-placement="bottom" title="Export as pdf" type="button"
+                                    class="m-1" (click)="rasterizePDF();">
+                                    <img src="../../../assets/svgs/material-symbols_save.svg" alt=""> Export to PDF</button> -->
                                 
                                     <button data-toggle="tooltip" data-placement="bottom" title="Clean Canvas" type="button"
                                     class="m-1" (click)="confirmClear();">

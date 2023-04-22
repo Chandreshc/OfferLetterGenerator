@@ -59,6 +59,8 @@
 .add-text-group{
     height: max-content;
     border-radius: 4px;
+    display: flex;
+    flex-direction: column;
 }
 
 .add-text-group input{
@@ -86,12 +88,19 @@ button{
     align-items: center;
     justify-content: center;
     height: 100%;
-    width: min-content;
+    width: 100%;
     padding: 8px;
     border-radius: 0px 4px 4px 0px;
 }
 
 .btn-close{
+    gap: 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    border-radius: 4px;
     color: #F30303;
     background-color: #FEF1F1;
     font-size: 18px;

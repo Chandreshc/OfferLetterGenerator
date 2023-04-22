@@ -2,6 +2,39 @@
     margin-top: 10px;
 }
 
+.navstyle {
+    background-color: #FDF3F8;
+    margin-bottom: 16px !important;
+}
+
+.containera {
+    padding: 0px 20px 0px 20px;
+}
+
+.heightfixer{
+    height: 72vh;
+    overflow-y: scroll;
+    padding-bottom: 20px;
+}
+
+.heightfixer::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge add Firefox */
+  .heightfixer {
+    -ms-overflow-style: none;
+    scrollbar-width: none; /* Firefox */
+  }
+
+.editorcontainer {
+    padding-right: 10px;
+}
+
+.canvascontainer {
+    width: 110%;
+}
+
 .images-item {
     width: 48%;
     cursor: pointer;

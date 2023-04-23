@@ -17,23 +17,7 @@ import java.util.UUID;
     @AllArgsConstructor
     @NoArgsConstructor
     public class Employee {
-        public Employee() {
-		super();
-	}
-
-		public Employee(UUID id, String name, String email, String position, Double ctc, Date dateOfOffer,
-			Date acceptanceDate) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.email = email;
-		this.position = position;
-		this.ctc = ctc;
-		this.dateOfOffer = dateOfOffer;
-		this.acceptanceDate = acceptanceDate;
-	}
-
-		@Id
+        @Id
         @GeneratedValue(strategy = GenerationType.UUID)
         private UUID id;
         private String name;

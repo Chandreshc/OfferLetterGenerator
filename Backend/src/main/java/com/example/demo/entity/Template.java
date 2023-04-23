@@ -25,16 +25,6 @@ public class Template {
 	public UUID getId() {
 		return id;
 	}
-	public Template(UUID id, String name, String templateObj, Date creationDate) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.templateObj = templateObj;
-		this.creationDate = creationDate;
-	}
-	public Template() {
-		super();
-	}
 	public void setId(UUID id) {
 		this.id = id;
 	}

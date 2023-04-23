@@ -46,8 +46,7 @@ public class TemplateService {
 		if(tempObj.getCreationDate()!=null) {
 			temp = repo.updateCreationDate(id, template.getCreationDate());
 		}
-		tempObj = repo.findById(id).orElse(null);
-		return repo.findById(id).orElse(null);
+		return fetchTemplate(id);
 	}
 
 	public String deleteTemplate(UUID id) throws Exception {

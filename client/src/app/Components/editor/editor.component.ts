@@ -218,7 +218,7 @@ export class EditorComponent implements OnInit {
 
   public sendMail() {
     Email.send({
-      SecureToken: "your security token from smtp server of elastic email",
+      SecureToken: "your secure token",
       To: 'receivers mail',
       From: "senders mail",
       Subject: "This is changed",

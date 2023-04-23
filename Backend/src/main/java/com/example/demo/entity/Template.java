@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import java.sql.Blob;
 import java.util.Date;
 import java.util.UUID;
 

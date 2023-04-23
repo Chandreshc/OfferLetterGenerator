@@ -8,6 +8,7 @@ import { ColorPickerModule } from 'ngx-color-picker';
 import { EditorComponent } from './Components/editor/editor.component';
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule, HttpHeaderResponse, HttpHeaders, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AppRoutingModule } from './app-routing.module';
     FabricjsEditorModule,
     FormsModule,
     ColorPickerModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

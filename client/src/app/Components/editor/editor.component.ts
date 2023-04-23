@@ -17,6 +17,8 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import jsPDF from 'jspdf';
 import { FabricjsEditorComponent } from 'projects/angular-editor-fabric-js/src/public-api';
+import './../../../assets/js/smtp.js';
+declare let Email: any;
 
 @Component({
   selector: 'app-editor',
@@ -26,11 +28,12 @@ import { FabricjsEditorComponent } from 'projects/angular-editor-fabric-js/src/p
 export class EditorComponent implements OnInit {
 
   title = 'angular-editor-fabric-js';
+  pdfObject: any;
 
   @ViewChild('canvas', { static: false }) canvas: FabricjsEditorComponent;
   addName: string = '';
-  doAddName(){
-    this.addName+=' {name}';
+  doAddName() {
+    this.addName += ' {name}';
   }
 
   constructor() { }
@@ -42,24 +45,26 @@ export class EditorComponent implements OnInit {
     this.canvas.rasterize();
   }
 
-  public rasterizePDF(){
+  public rasterizePDF() {
     var __CANVAS = document.getElementById('canvas');
-    let width = __CANVAS.clientWidth; 
+    let width = __CANVAS.clientWidth;
     let height = __CANVAS.clientHeight;
     let pdf;
     // let pdf = new jsPDF('portrait','px',[height, width]);
     //set the orientation
-    if(width > height){
+    if (width > height) {
       pdf = new jsPDF('l', 'px', [width, height]);
     }
-    else{
+    else {
       pdf = new jsPDF('p', 'px', [height, width]);
     }
     //then we get the dimensions from the 'pdf' file itself
     width = pdf.internal.pageSize.getWidth();
     height = pdf.internal.pageSize.getHeight();
-    pdf.addImage(__CANVAS, 'PNG', 0, 0,width,height);
-    pdf.save("download.pdf");
+    pdf.addImage(__CANVAS, 'PNG', 0, 0, width, height);
+    this.pdfObject = pdf.output('datauristring')
+    console.log(this.pdfObject);
+    // pdf.save("download.pdf");
     // let canv = <HTMLCanvasElement> document.getElementById('canvas');
     // var imgData = canv.toDataURL("image/jpeg", 1.0);
     // var pdf = new jsPDF();
@@ -78,7 +83,7 @@ export class EditorComponent implements OnInit {
   //   let scale = Number(scaleele.value);
   //   context.scale(scale,scale);
   //   context.save();
-    
+
   //   this.canvas.size.width *= scale;
   //   this.canvas.size.height *= scale;
   // }
@@ -209,5 +214,22 @@ export class EditorComponent implements OnInit {
 
   public drawMode() {
     this.canvas.drawingMode();
+  }
+
+  public sendMail() {
+    Email.send({
+      SecureToken: "your security token from smtp server of elastic email",
+      To: 'receivers mail',
+      From: "senders mail",
+      Subject: "This is changed",
+      Body: "And this is the offer letter attached",
+      Attachments : [
+        {
+          name : "OfferLetter.pdf",
+          data : this.pdfObject
+        }]
+    }).then(
+      message => alert(message)
+    );
   }
 }

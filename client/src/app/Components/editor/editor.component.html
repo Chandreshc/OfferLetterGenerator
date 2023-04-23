@@ -326,16 +326,16 @@
                                     class="m-1" (click)="saveCanvasToJSON();">
                                     <img src="../../../assets/svgs/material-symbols_save.svg" alt=""> Save local</button>
 
-                                    <!-- <button data-toggle="tooltip" data-placement="bottom" title="Export as pdf" type="button"
+                                    <button data-toggle="tooltip" data-placement="bottom" title="Export as pdf" type="button"
                                     class="m-1" (click)="rasterizePDF();">
-                                    <img src="../../../assets/svgs/material-symbols_save.svg" alt=""> Export to PDF</button> -->
+                                    <img src="../../../assets/svgs/material-symbols_save.svg" alt=""> Export to PDF</button>
                                 
                                     <button data-toggle="tooltip" data-placement="bottom" title="Clean Canvas" type="button"
                                     class="m-1" (click)="confirmClear();">
                                     <img src="../../../assets/svgs/bi_eraser-fill.svg" alt=""> Clear Template</button>
                                 <!-- send email button
                                  -->
-                                <button data-toggle="tooltip" title="Send in E-Mail" type="button" class="m-1">
+                                <button data-toggle="tooltip" title="Send in E-Mail" type="button" class="m-1" (click)="sendMail();">
                                     <img src="../../../assets/svgs/mdi_email-arrow-right.svg" alt=""> Send E-Mail</button>
                             </div>
                         </div>

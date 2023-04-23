@@ -23,7 +23,7 @@ import java.util.UUID;
         private String name;
         private String email;
         private String position;
-        private int ctc;
+        private Double ctc;
         private Date dateOfOffer;
         private Date acceptanceDate;
 
@@ -59,11 +59,11 @@ import java.util.UUID;
             this.position = position;
         }
 
-        public int getCtc() {
+        public Double getCtc() {
             return ctc;
         }
 
-        public void setCtc(int ctc) {
+        public void setCtc(Double ctc) {
             this.ctc = ctc;
         }
 

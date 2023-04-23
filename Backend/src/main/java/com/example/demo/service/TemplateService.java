@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +57,16 @@ public class TemplateService {
 		repo.deleteById(id);
 		String success = "Successfully Deleted";
 		return "\""+success+"\"";
+	}
+
+	public String deleteAllTemplate() {
+		repo.deleteAll();
+		String success = "Successfully Deleted";
+		return "\""+success+"\"";
+	}
+
+	public List<Template> getAllTemplate() {
+		return repo.findAll();
 	}
 	
 	

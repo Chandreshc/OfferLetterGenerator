@@ -17,4 +17,12 @@ public class EmployeeService {
 	public List<Employee> getAllEmployee() {
 		return repo.findAll();
 	}
+
+	public void addEmployee(Employee obj) throws Exception {
+		Employee tempObj = repo.findById(obj.getId()).orElse(null);
+		if(tempObj!=null) {
+			throw new Exception("Employee already exists");
+		}
+		repo.save(obj);
+	}
 }

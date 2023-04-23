@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -54,6 +55,15 @@ public class Controller {
 	@DeleteMapping("/deleteAll")
 	public String deleteAllTemplate() {
 		return tservice.deleteAllTemplate();
+	}
+	
+	@GetMapping("/fillData")
+	public void fillData() throws Exception {
+		Employee obj = new Employee();
+		obj = new Employee(UUID.randomUUID(),"chandresh","chandreshgourd@gmail.com","Programmer Analyst Trainee",4.50,new Date(),new Date());
+		eservice.addEmployee(obj);
+		obj = new Employee(UUID.randomUUID(),"goudChandresh","gourd13.8.2001@gmail.com","Programmer Analyst",7.12,new Date(),new Date());
+		eservice.addEmployee(obj);
 	}
 	
 	@GetMapping("/getAll")

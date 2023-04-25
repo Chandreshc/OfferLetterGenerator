@@ -110,6 +110,8 @@ export class EditorComponent implements OnInit {
 
   public addText() {
     this.canvas.addText();
+    // added this to reset the addName model
+    this.addName = ''; 
   }
 
   public getImgPolaroid(event) {

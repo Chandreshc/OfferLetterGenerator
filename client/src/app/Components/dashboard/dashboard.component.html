@@ -6,7 +6,7 @@
     <section>
 
         <!-- create new template section -->
-        <a class="new-section" [href]="'editor'">
+        <a class="new-section" (click)="gotoeditor();" style="cursor: pointer;" >
             <img src="../../../assets/img/clarity_add-line.svg" alt="">
             New Template
         </a>
@@ -17,64 +17,32 @@
         <div class="templates">
             <div class="section-title">
                 <h1>Existing Templates</h1>
-                <button class="btn-delete-all">
+                <button class="btn-delete-all" (click)="deleteAll();">
                     <img src="../../../assets/img/mdi_delete.svg" alt="">
                     Delete All
                 </button>
             </div>
 
-            <ol class="templates-list">
+            <ul class="templates-list" style="list-style: none;" *ngFor="let i of TemplateList; let j = index">
                 <!-- create a component for <li> -->
                 <li>
                     <div class="list-item">
                         <div class="item-header">
-                            Offer Letter Template
+                            {{j+1}}.
+                            {{i.name}}
                             <div class="item-controls">
-                                <button title="edit">
+                                <button title="edit" (click)="editTemplate(j);">
                                     <img src="../../../assets/img/ci_file-edit.svg" alt="">
                                 </button>
-                                <button title="delete">
+                                <button title="delete" (click)="deleteTemplate(j);">
                                     <img src="../../../assets/img/material-symbols_delete-forever-rounded.svg" alt="">
                                 </button>
                             </div>
                         </div>
-                        <span>06 April</span>
+                        <span>{{i.creationDate.toDateString()}}</span>
                     </div>
                 </li>
-                <li>
-                    <div class="list-item">
-                        <div class="item-header">
-                            Offer Letter Template
-                            <div class="item-controls">
-                                <button title="edit">
-                                    <img src="../../../assets/img/ci_file-edit.svg" alt="">
-                                </button>
-                                <button title="delete">
-                                    <img src="../../../assets/img/material-symbols_delete-forever-rounded.svg" alt="">
-                                </button>
-                            </div>
-                        </div>
-                        <span>06 April</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="list-item">
-                        <div class="item-header">
-                            Offer Letter Template
-                            <div class="item-controls">
-                                <button title="edit">
-                                    <img src="../../../assets/img/ci_file-edit.svg" alt="">
-                                </button>
-                                <button title="delete">
-                                    <img src="../../../assets/img/material-symbols_delete-forever-rounded.svg" alt="">
-                                </button>
-                            </div>
-                        </div>
-                        <span>06 April</span>
-                    </div>
-                </li>
-
-            </ol>
+            </ul>
         </div>
     </section>
 </div>

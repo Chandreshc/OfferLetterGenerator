@@ -27,7 +27,23 @@ import java.util.UUID;
         private Date dateOfOffer;
         private Date acceptanceDate;
 
-        public UUID getId() {
+        public Employee(UUID id, String name, String email, String position, Double ctc, Date dateOfOffer,
+				Date acceptanceDate) {
+			super();
+			this.id = id;
+			this.name = name;
+			this.email = email;
+			this.position = position;
+			this.ctc = ctc;
+			this.dateOfOffer = dateOfOffer;
+			this.acceptanceDate = acceptanceDate;
+		}
+
+		public Employee() {
+			super();
+		}
+
+		public UUID getId() {
             return id;
         }
 

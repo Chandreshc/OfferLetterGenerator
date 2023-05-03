@@ -4,12 +4,12 @@
         <div class="d-flex justify-content-space-between">
             <img src="../../../assets/img/logo-1.png" alt="">
             <div style="padding-left: 30px;">
-                <input type="text" title="fileTitle" value="Untitled Template">
+                <input type="text" title="fileTitle" placeholder="Untitled" [(ngModel)]="title" value="Untitled Template">
             </div>
         </div>
         <div>
             <div>
-              <a class="btn-close" [href]="'dashboard'" style="background-color: rgb(255, 255, 255) !important; margin-top: 10px;"><img src="../../../assets/svgs/material-symbols_close.svg" alt=""> Close Editor</a>
+              <a class="btn-close" (click)="onClose();" style="background-color: rgb(255, 255, 255) !important; margin-top: 10px; cursor: pointer;"><img src="../../../assets/svgs/material-symbols_close.svg" alt=""> Close Editor</a>
             </div>
         </div>
     </div>
@@ -322,20 +322,28 @@
                     <div class="col-xl-12">
                         <div class="row">
                             <div class="col-xl-12 d-flex">
-                                <button data-toggle="tooltip" data-placement="bottom" title="Save in localStorage" type="button"
-                                    class="m-1" (click)="saveCanvasToJSON();">
+                                <button data-toggle="tooltip" [hidden]="!toggler" data-placement="bottom" title="Save in localStorage" type="button"
+                                    class="m-1" (click)="saveTemplate();">
                                     <img src="../../../assets/svgs/material-symbols_save.svg" alt=""> Save local</button>
+
+                                    <button data-toggle="tooltip" [hidden]="toggler" data-placement="bottom" title="Save in localStorage" type="button"
+                                    class="m-1" (click)="updateTemplate();">
+                                    <img src="../../../assets/svgs/material-symbols_save.svg" alt=""> Update local</button>
 
                                     <button data-toggle="tooltip" data-placement="bottom" title="Export as pdf" type="button"
                                     class="m-1" (click)="rasterizePDF();">
                                     <img src="../../../assets/svgs/material-symbols_save.svg" alt=""> Export to PDF</button>
+
+                                    <button data-toggle="tooltip" data-placement="bottom" title="Export as pdf" type="button"
+                                    class="m-1" (click)="loadCanvasFromJSON();">
+                                    <img src="../../../assets/svgs/material-symbols_save.svg" alt=""> Load canvas from json</button>
                                 
                                     <button data-toggle="tooltip" data-placement="bottom" title="Clean Canvas" type="button"
                                     class="m-1" (click)="confirmClear();">
                                     <img src="../../../assets/svgs/bi_eraser-fill.svg" alt=""> Clear Template</button>
                                 <!-- send email button
                                  -->
-                                <button data-toggle="tooltip" title="Send in E-Mail" type="button" class="m-1" (click)="sendMail();">
+                                <button data-toggle="tooltip" title="Send in E-Mail" type="button" class="m-1" (click)="tempEmail();">
                                     <img src="../../../assets/svgs/mdi_email-arrow-right.svg" alt=""> Send E-Mail</button>
                             </div>
                         </div>

@@ -3,6 +3,9 @@ package com.example.demo.entity;
 import java.util.Date;
 import java.util.UUID;
 
+import org.hibernate.Length;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,8 +23,22 @@ public class Template {
 	@GeneratedValue(strategy = GenerationType.UUID)
 	private UUID id;
 	private String name;
+	@Column(length = Length.LOB_DEFAULT)
 	private String templateObj;
 	private Date creationDate;
+	
+	public Template(UUID id, String name, String templateObj, Date creationDate) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.templateObj = templateObj;
+		this.creationDate = creationDate;
+	}
+	
+	public Template() {
+		super();
+	}
+
 	public UUID getId() {
 		return id;
 	}

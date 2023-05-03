@@ -15,8 +15,11 @@
 // }
 
 import { Component, ViewChild, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import jsPDF from 'jspdf';
 import { FabricjsEditorComponent } from 'projects/angular-editor-fabric-js/src/public-api';
+import { Template } from 'src/app/entity/template.js';
+import { TemplateService } from 'src/app/service/template.service.js';
 import './../../../assets/js/smtp.js';
 declare let Email: any;
 
@@ -27,28 +30,45 @@ declare let Email: any;
 })
 export class EditorComponent implements OnInit {
 
-  title = 'angular-editor-fabric-js';
+  title: string;
   pdfObject: any;
+  template: Template;
+  toggler: Boolean;
 
   @ViewChild('canvas', { static: false }) canvas: FabricjsEditorComponent;
   addName: string = '';
   doAddName() {
+    this.canvas.textString += ' {name}';
     this.addName += ' {name}';
   }
 
-  constructor() { }
+  constructor(private _service:TemplateService,private _router:Router) { 
+    console.log(this._router.getCurrentNavigation().extras.state.template);
+    this.template = this._router.getCurrentNavigation().extras.state.template;
+    this.toggler = this.template == undefined;
+    this.title = this.template==undefined? "": this.template.name;
+    // this.loadCanvasFromJSON();
+    // this.canvas.loadCanvasFromJsonObject(JSON.parse(this.template.templateObj));
+    // document.addEventListener("DOMContentLoaded",this.canvas.loadCanvasFromJSON);
+  }
 
   ngOnInit(): void {
+    // document.addEventListener("DOMContentLoaded",this.canvas.loadCanvasFromJSON);
   }
+
+  // public async loader(){
+  //   await this.loadCanvasFromJSON();
+  // }
 
   public rasterize() {
     this.canvas.rasterize();
   }
 
   public rasterizePDF() {
-    var __CANVAS = document.getElementById('canvas');
-    let width = __CANVAS.clientWidth;
-    let height = __CANVAS.clientHeight;
+    var __CANVAS = document.getElementById('canvas2');
+    let width = 711;
+    let height = 1007;
+    console.log(height,width);
     let pdf;
     // let pdf = new jsPDF('portrait','px',[height, width]);
     //set the orientation
@@ -62,9 +82,9 @@ export class EditorComponent implements OnInit {
     width = pdf.internal.pageSize.getWidth();
     height = pdf.internal.pageSize.getHeight();
     pdf.addImage(__CANVAS, 'PNG', 0, 0, width, height);
-    this.pdfObject = pdf.output('datauristring')
-    console.log(this.pdfObject);
-    // pdf.save("download.pdf");
+    // this.pdfObject = pdf.output('datauristring')
+    // console.log(this.pdfObject);
+    pdf.save("download.pdf");
     // let canv = <HTMLCanvasElement> document.getElementById('canvas');
     // var imgData = canv.toDataURL("image/jpeg", 1.0);
     // var pdf = new jsPDF();
@@ -96,8 +116,29 @@ export class EditorComponent implements OnInit {
     this.canvas.saveCanvasToJSON();
   }
 
-  public loadCanvasFromJSON() {
+  public onClose(){
+    const temp=this.canvas.canvasObject();
+    console.log(temp)
+    if(temp!=localStorage.getItem("Kanvas")){
+      alert("Not Saved");
+    }else{
+      localStorage.clear();
+      this._router.navigate(['dashboard']);
+    }
+  }
+
+  public async loadCanvasFromJSON() {
+    // const tempVariable = localStorage.getItem('Kanvas')
+    // console.log(tempVariable);
+    // await this.canvas.loadCanvasFromJsonObject(JSON.parse(tempVariable));
     this.canvas.loadCanvasFromJSON();
+    // this.canvas.changeCanvas();
+  }
+
+  public async loadCanvasFromJSON2(){
+    this.canvas.loadCanvasFromJSON2();
+    await this.rasterizePDF();
+
   }
 
   public confirmClear() {
@@ -216,20 +257,77 @@ export class EditorComponent implements OnInit {
     this.canvas.drawingMode();
   }
 
-  public sendMail() {
+  public tempEmail(){
+    this._service.getObj(localStorage.getItem("Current")).subscribe(
+      data => {
+        console.log(data)
+        this.mailSender(data);  
+      },
+      error => {
+        console.log(error)
+      }
+    )
+  }
+
+  public async mailSender(data:any){
+    data.forEach(i => {
+      // console.log(i["tempObj"]);
+      console.log("gmail",i["gmail"]);
+      const tempObj:JSON = JSON.parse(i["tempObj"]);
+      console.log(tempObj);
+      localStorage.setItem('Kanva',JSON.stringify(tempObj));
+      this.loadCanvasFromJSON2();
+      this.rasterizePDF();
+      // await this.sendMail(i["gmail"]);
+          
+      // this.loadCanvasFromJSON2();
+      // this.rasterizePDF();
+      // this.sendMail(i["gmail"]);
+      // console.log("object",i["tempObj"]);
+    });
+  }
+  
+
+  public sendMail(receiver:string) {
+    
     Email.send({
-      SecureToken: "your secure token",
-      To: 'receivers mail',
-      From: "senders mail",
+      SecureToken: "your security token",
+      To: receiver,
+      From: "your mail id",
       Subject: "This is changed",
       Body: "And this is the offer letter attached",
       Attachments : [
         {
           name : "OfferLetter.pdf",
           data : this.pdfObject
+          // path : ""
         }]
     }).then(
       message => alert(message)
     );
   }
+
+  public saveTemplate(){
+    this.saveCanvasToJSON();
+    const temp = new Template("",localStorage.getItem("Kanvas"),this.title,new Date);
+    this._service.saveTemplate(temp).subscribe(
+      data => console.log(data),
+      error => console.log(error)
+    )
+  }
+
+  public updateTemplate(){
+    this.saveCanvasToJSON();
+    const temp = new Template("",localStorage.getItem('Kanvas'),this.template.name,new Date);
+    this._service.updateTemplate(localStorage.getItem('Current'),temp).subscribe(
+      data => {
+        console.log(data)
+      },
+      error => {console.log(error)}
+    )
+  }
+
+  // temp = this.loadCanvasFromJSON();
+   
 }
+

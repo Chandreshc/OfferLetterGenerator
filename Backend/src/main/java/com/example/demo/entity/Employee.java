@@ -1,34 +1,40 @@
 package com.example.demo.entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 import java.util.Date;
 import java.util.UUID;
 
+
+
 @Entity(name="Employee")
     @Data
-    @AllArgsConstructor
-    @NoArgsConstructor
+//    @AllArgsConstructor
+//    @NoArgsConstructor
     public class Employee {
-        @Id
+
+
+    @Id
         @GeneratedValue(strategy = GenerationType.UUID)
         private UUID id;
         private String name;
         private String email;
         private String position;
         private Double ctc;
+        @Temporal(TemporalType.DATE)
         private Date dateOfOffer;
+        @Temporal(TemporalType.DATE)
         private Date acceptanceDate;
+        @Temporal(TemporalType.DATE)
+        private Date dateOfJoining;
 
         public Employee(UUID id, String name, String email, String position, Double ctc, Date dateOfOffer,
-				Date acceptanceDate) {
+				Date acceptanceDate, Date dateOfJoining) {
 			super();
 			this.id = id;
 			this.name = name;
@@ -37,9 +43,18 @@ import java.util.UUID;
 			this.ctc = ctc;
 			this.dateOfOffer = dateOfOffer;
 			this.acceptanceDate = acceptanceDate;
+            this.dateOfJoining = dateOfJoining;
 		}
 
-		public Employee() {
+    public Date getDateOfJoining() {
+        return dateOfJoining;
+    }
+
+    public void setDateOfJoining(Date dateOfJoining) {
+        this.dateOfJoining = dateOfJoining;
+    }
+
+    public Employee() {
 			super();
 		}
 
@@ -99,17 +114,18 @@ import java.util.UUID;
             this.acceptanceDate = acceptanceDate;
         }
 
-        @java.lang.Override
-        public java.lang.String toString() {
-            return "Template{" +
-                    "id=" + id +
-                    ", name='" + name + '\'' +
-                    ", email='" + email + '\'' +
-                    ", position='" + position + '\'' +
-                    ", ctc=" + ctc +
-                    ", dateOfOffer=" + dateOfOffer +
-                    ", acceptanceDate=" + acceptanceDate +
-                    '}';
-        }
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", position='" + position + '\'' +
+                ", ctc=" + ctc +
+                ", dateOfOffer=" + dateOfOffer +
+                ", acceptanceDate=" + acceptanceDate +
+                ", dateOfJoining=" + dateOfJoining +
+                '}';
     }
+}
 

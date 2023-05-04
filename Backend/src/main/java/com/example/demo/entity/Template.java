@@ -16,8 +16,8 @@ import lombok.NoArgsConstructor;
 
 @Entity(name="Template")
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+//@AllArgsConstructor
+//@NoArgsConstructor
 public class Template {
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)

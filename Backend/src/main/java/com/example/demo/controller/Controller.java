@@ -72,10 +72,10 @@ public class Controller {
 	public void fillData() throws Exception {
 		Employee obj = new Employee();
 		//change value at your choice
-		obj = new Employee(UUID.randomUUID(),"name","email","Programmer Analyst Trainee",4.50,new Date(),new Date());
+		obj = new Employee(UUID.randomUUID(),"Anurag Pradhan","anuragp3487@gmail.com","Programmer Analyst Trainee",7.21,new Date(),new Date(),new Date());
 		eservice.addEmployee(obj);
-		obj = new Employee(UUID.randomUUID(),"name","email","Programmer Analyst",7.12,new Date(),new Date());
-		eservice.addEmployee(obj);
+//		obj = new Employee(UUID.randomUUID(),"asutosh","email","Programmer Analyst",7.12,new Date(),new Date(), new Date());
+//		eservice.addEmployee(obj);
 	}
 	
 	@GetMapping("/{id}/getObject")

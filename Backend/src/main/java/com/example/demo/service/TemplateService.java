@@ -1,5 +1,8 @@
 package com.example.demo.service;
 
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
@@ -23,7 +26,7 @@ public class TemplateService {
 	
 	@Autowired
 	EmployeeService eservice;
-	
+
 
 	public Template saveTemplate(Template template) throws Exception {
 		Template tempObj = repo.findByName(template.getName());
@@ -96,6 +99,7 @@ public class TemplateService {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+
 			//for fetching all objects in the current json object to an array
 			JSONArray temparr = (JSONArray) vemp.get("objects");
 			System.out.println(temparr);
@@ -103,12 +107,15 @@ public class TemplateService {
 			temparr.forEach(ele->{
 				JSONObject worried = (JSONObject) ele;
 				String tempString = (String) worried.get("text");
+
 				if(tempString!=null) {
 					tempString = tempString.replace("{name}",i.getName());
 					tempString = tempString.replace("{position}",i.getPosition());
 					tempString = tempString.replace("{ctc}", String.valueOf(i.getCtc()));
-					tempString = tempString.replace("{dateOfOffer}",String.valueOf(i.getDateOfOffer().getDate()));
-					tempString = tempString.replace("{acceptanceDate}",String.valueOf(i.getAcceptanceDate().getDate()));
+
+					tempString = tempString.replace("{dateOfOffer}",simpleDateFormat(i.getDateOfOffer()));
+					tempString = tempString.replace("{acceptanceDate}",simpleDateFormat(i.getAcceptanceDate()));
+					tempString = tempString.replace("{dateOfJoining}",simpleDateFormat(i.getDateOfJoining()));
 				}
 				System.out.println(tempString);
 				if(tempString!=null) worried.put("text", tempString);
@@ -123,7 +130,13 @@ public class TemplateService {
 		System.out.println(jobj);
 		return jobj.toString();
 	}
-	
-	
-	
+
+	//For formating Date
+	private String simpleDateFormat(Date a) {
+		String pattern = "dd MMM,yyyy";
+		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+		return sdf.format(a);
+	}
+
+
 }

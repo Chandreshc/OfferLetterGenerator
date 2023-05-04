@@ -89,6 +89,7 @@
                     <!-- <img class="images-item" (click)="getImgPolaroid($event)" src="../../../assets/img/logo-1.png"> -->
                     <img class="images-item" src="../../../assets/img/logo-1.png"
                         (click)="addImageOnCanvas('../../../assets/img/logo-1.png');">
+                    
                 </div>
             </div>
             <br />
@@ -213,8 +214,9 @@
                         <div class="custom-item-body">
                             <select [(ngModel)]="canvas.props.fontFamily" class="form-control"
                                 (change)="setFontFamily()">
+                                <option value="Mongolian Baiti" selected>Mongolian Baiti</option>
                                 <option value="arial">Arial</option>
-                                <option value="helvetica" selected>Helvetica</option>
+                                <option value="helvetica" >Helvetica</option>
                                 <option value="verdana">Verdana</option>
                                 <option value="courier">Courier</option>
                                 <option value="Roboto">Roboto</option>
@@ -230,6 +232,7 @@
                                 <option value="Inconsolata">Inconsolata</option>
                                 <option value="Pacifico">Pacifico</option>
                                 <option value="Gloria Hallelujah">Gloria Hallelujah</option>
+                                <option value="Bell MT">Bell MT</option>
                             </select>
                         </div>
                     </div>

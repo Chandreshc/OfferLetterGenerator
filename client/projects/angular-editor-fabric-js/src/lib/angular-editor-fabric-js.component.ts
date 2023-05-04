@@ -81,7 +81,7 @@ export class FabricjsEditorComponent implements AfterViewInit {
               this.figureEditor = true;
               this.getFill();
               break;
-            case 'i-text':
+            case 'textbox':
               this.textEditor = true;
               this.getLineHeight();
               this.getCharSpacing();
@@ -147,7 +147,7 @@ export class FabricjsEditorComponent implements AfterViewInit {
               this.figureEditor = true;
               this.getFill();
               break;
-            case 'i-text':
+            case 'textbox':
               this.textEditor = true;
               this.getLineHeight();
               this.getCharSpacing();
@@ -192,7 +192,7 @@ export class FabricjsEditorComponent implements AfterViewInit {
 
   addText() {
     if (this.textString) {
-      const text = new fabric.IText(this.textString, {
+      const text = new fabric.Textbox(this.textString, {
         left: 10,
         top: 10,
         fontFamily: 'helvetica',
@@ -356,8 +356,8 @@ export class FabricjsEditorComponent implements AfterViewInit {
     }
   }
 
-  setActiveStyle(styleName, value: string | number, object: fabric.IText) {
-    object = object || this.canvas.getActiveObject() as fabric.IText;
+  setActiveStyle(styleName, value: string | number, object: fabric.Textbox) {
+    object = object || this.canvas.getActiveObject() as fabric.Textbox;
     if (!object) { return; }
 
     if (object.setSelectionStyles && object.isEditing) {
@@ -447,7 +447,7 @@ export class FabricjsEditorComponent implements AfterViewInit {
           clone = new fabric.Triangle(activeObject.toObject());
           break;
         case 'i-text':
-          clone = new fabric.IText('', activeObject.toObject());
+          clone = new fabric.Textbox('', activeObject.toObject());
           break;
         case 'image':
           clone = fabric.util.object.clone(activeObject);
@@ -678,40 +678,40 @@ export class FabricjsEditorComponent implements AfterViewInit {
   }
   public loadCanvasFromJSON2() {
     const CANVAS = localStorage.getItem('Kanva');
-    console.log('CANVAS');
-    console.log(CANVAS);
+    // console.log('CANVAS');
+    // console.log(CANVAS);
 
     // and load everything from the same json
     this.canvas2.loadFromJSON(CANVAS, () => {
-      console.log('CANVAS untar');
-      console.log(CANVAS);
+      // console.log('CANVAS untar');
+      // console.log(CANVAS);
 
       // making sure to render canvas at the end
       this.canvas2.renderAll();
 
       // and checking if object's "name" is preserved
-      console.log('this.canvas.item(0).name');
-      console.log(this.canvas);
+      // console.log('this.canvas.item(0).name');
+      // console.log(this.canvas);
     });
 
   }
 
    public loadCanvasFromJSON() {
     const CANVAS = localStorage.getItem('Kanvas');
-    console.log('CANVAS');
-    console.log(CANVAS);
+    // console.log('CANVAS');
+    // console.log(CANVAS);
 
     // and load everything from the same json
     this.canvas.loadFromJSON(CANVAS, () => {
-      console.log('CANVAS untar');
-      console.log(CANVAS);
+      // console.log('CANVAS untar');
+      // console.log(CANVAS);
 
       // making sure to render canvas at the end
       this.canvas.renderAll();
 
       // and checking if object's "name" is preserved
-      console.log('this.canvas.item(0).name');
-      console.log(this.canvas);
+      // console.log('this.canvas.item(0).name');
+      // console.log(this.canvas);
     });
 
   }

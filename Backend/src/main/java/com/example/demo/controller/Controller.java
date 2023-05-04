@@ -71,10 +71,9 @@ public class Controller {
 	@CrossOrigin(origins="http://localhost:4200")
 	public void fillData() throws Exception {
 		Employee obj = new Employee();
-		//change value at your choice
-		obj = new Employee(UUID.randomUUID(),"name","email","Programmer Analyst Trainee",4.50,new Date(),new Date());
+		obj = new Employee(UUID.randomUUID(),"name","mail","Programmer Analyst Trainee",4.50,new Date(),new Date());
 		eservice.addEmployee(obj);
-		obj = new Employee(UUID.randomUUID(),"name","email","Programmer Analyst",7.12,new Date(),new Date());
+		obj = new Employee(UUID.randomUUID(),"name","mail","Programmer Analyst",7.12,new Date(),new Date());
 		eservice.addEmployee(obj);
 	}
 	

@@ -34,6 +34,7 @@ export class EditorComponent implements OnInit {
   pdfObject: any;
   template: Template;
   toggler: Boolean;
+  jsonObj: any;
 
   @ViewChild('canvas', { static: false }) canvas: FabricjsEditorComponent;
   addName: string = '';
@@ -47,6 +48,7 @@ export class EditorComponent implements OnInit {
     this.template = this._router.getCurrentNavigation().extras.state.template;
     this.toggler = this.template == undefined;
     this.title = this.template==undefined? "": this.template.name;
+    this.jsonObj=[];
     // this.loadCanvasFromJSON();
     // this.canvas.loadCanvasFromJsonObject(JSON.parse(this.template.templateObj));
     // document.addEventListener("DOMContentLoaded",this.canvas.loadCanvasFromJSON);
@@ -82,9 +84,9 @@ export class EditorComponent implements OnInit {
     width = pdf.internal.pageSize.getWidth();
     height = pdf.internal.pageSize.getHeight();
     pdf.addImage(__CANVAS, 'PNG', 0, 0, width, height);
-    // this.pdfObject = pdf.output('datauristring')
+    return pdf.output('datauristring');
     // console.log(this.pdfObject);
-    pdf.save("download.pdf");
+    // pdf.save("download.pdf");
     // let canv = <HTMLCanvasElement> document.getElementById('canvas');
     // var imgData = canv.toDataURL("image/jpeg", 1.0);
     // var pdf = new jsPDF();
@@ -135,10 +137,8 @@ export class EditorComponent implements OnInit {
     // this.canvas.changeCanvas();
   }
 
-  public async loadCanvasFromJSON2(){
+  public loadCanvasFromJSON2(){
     this.canvas.loadCanvasFromJSON2();
-    await this.rasterizePDF();
-
   }
 
   public confirmClear() {
@@ -151,8 +151,6 @@ export class EditorComponent implements OnInit {
 
   public addText() {
     this.canvas.addText();
-    // added this to reset the addName model
-    this.addName = ''; 
   }
 
   public getImgPolaroid(event) {
@@ -271,15 +269,20 @@ export class EditorComponent implements OnInit {
     )
   }
 
-  public async mailSender(data:any){
+  public mailSender(data:any){
     data.forEach(i => {
       // console.log(i["tempObj"]);
       console.log("gmail",i["gmail"]);
       const tempObj:JSON = JSON.parse(i["tempObj"]);
       console.log(tempObj);
-      localStorage.setItem('Kanva',JSON.stringify(tempObj));
-      this.loadCanvasFromJSON2();
-      this.rasterizePDF();
+      setTimeout(() => {
+        localStorage.setItem('Kanva',JSON.stringify(tempObj));
+        this.loadCanvasFromJSON2();
+      }, 1000);
+      let vempObj = {};
+      vempObj["email"]=i["gmail"];
+      vempObj["pdf"]=this.rasterizePDF();
+      this.jsonObj.push(vempObj);
       // await this.sendMail(i["gmail"]);
           
       // this.loadCanvasFromJSON2();
@@ -287,26 +290,34 @@ export class EditorComponent implements OnInit {
       // this.sendMail(i["gmail"]);
       // console.log("object",i["tempObj"]);
     });
+    this.sendMail(this.jsonObj);
   }
   
 
-  public sendMail(receiver:string) {
-    
-    Email.send({
-      SecureToken: "your security token",
-      To: receiver,
-      From: "your mail id",
-      Subject: "This is changed",
-      Body: "And this is the offer letter attached",
-      Attachments : [
-        {
-          name : "OfferLetter.pdf",
-          data : this.pdfObject
-          // path : ""
-        }]
-    }).then(
-      message => alert(message)
-    );
+  public sendMail(jsonObj:any) {
+    console.log(this.jsonObj);
+    if(this.jsonObj[0].pdf===this.jsonObj[1].pdf){
+      console.log("same pdf");
+    }else{
+      console.log("different pdf");
+    }
+    this.jsonObj.forEach(element => {
+      Email.send({
+        SecureToken: "your secure token",
+        To: element.email,
+        From: "sender mail",
+        Subject: "This is changed",
+        Body: "And this is the offer letter attached",
+        Attachments : [
+          {
+            name : "OfferLetter.pdf",
+            data : element.pdf
+            // path : ""
+          }]
+      }).then(
+        message => alert(message)
+      );
+    });
   }
 
   public saveTemplate(){

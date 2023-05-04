@@ -113,9 +113,9 @@ public class TemplateService {
 					tempString = tempString.replace("{position}",i.getPosition());
 					tempString = tempString.replace("{ctc}", String.valueOf(i.getCtc()));
 
-					tempString = tempString.replace("{dateOfOffer}",simpleDateFormat(i.getDateOfOffer()));
-					tempString = tempString.replace("{acceptanceDate}",simpleDateFormat(i.getAcceptanceDate()));
-					tempString = tempString.replace("{dateOfJoining}",simpleDateFormat(i.getDateOfJoining()));
+					tempString = tempString.replace("{Offerdate}",simpleDateFormat(i.getDateOfOffer()));
+					tempString = tempString.replace("{acceptDate}",simpleDateFormat(i.getAcceptanceDate()));
+					tempString = tempString.replace("{joiningDate}",simpleDateFormat(i.getDateOfJoining()));
 				}
 				System.out.println(tempString);
 				if(tempString!=null) worried.put("text", tempString);
@@ -133,7 +133,7 @@ public class TemplateService {
 
 	//For formating Date
 	private String simpleDateFormat(Date a) {
-		String pattern = "dd MMM,yyyy";
+		String pattern = "dd MMM, yyyy";
 		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
 		return sdf.format(a);
 	}

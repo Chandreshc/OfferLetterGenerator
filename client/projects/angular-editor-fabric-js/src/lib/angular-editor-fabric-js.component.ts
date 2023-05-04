@@ -195,7 +195,7 @@ export class FabricjsEditorComponent implements AfterViewInit {
       const text = new fabric.Textbox(this.textString, {
         left: 10,
         top: 10,
-        fontFamily: 'helvetica',
+        fontFamily: 'Mongolian Baiti',
         angle: 0,
         fill: '#000000',
         scaleX: 0.5,

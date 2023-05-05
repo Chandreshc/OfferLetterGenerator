@@ -288,7 +288,40 @@ export class EditorComponent implements OnInit {
       // console.log("object",i["tempObj"]);
     });
   }
-  
+  public toggleModal(){
+    if(document.getElementById("mailModal").style.display=="none"){
+      document.getElementById("mailModal").style.display="flex";
+    }
+    else
+      document.getElementById("mailModal").style.display="none";
+  }
+
+  // select candidates section
+
+  // candidates list
+  selectAllCandidates: boolean = false;
+  candidates: any[] = [
+    { id: 1, name: 'Candidate 1', selected: false },
+    { id: 2, name: 'Candidate 2', selected: false },
+    { id: 3, name: 'Candidate 3', selected: false }
+  ];
+
+  // select logic
+  selectAllItems() {
+    for (let candidate of this.candidates) {
+      candidate.selected = this.selectAllCandidates;
+    }
+  }
+
+  // select template
+  public selectedValue: string;
+  // template list
+  public templates: any[] = [
+    {value: 'Template 1'},
+    {value: 'Template 2'},
+    {value: 'Template 3'},
+  ]
+
 
   public sendMail(receiver:string) {
     

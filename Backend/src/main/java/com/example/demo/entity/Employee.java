@@ -14,8 +14,8 @@ import java.util.UUID;
 
 @Entity(name="Employee")
     @Data
-    @AllArgsConstructor
-    @NoArgsConstructor
+//    @AllArgsConstructor
+//    @NoArgsConstructor
     public class Employee {
         @Id
         @GeneratedValue(strategy = GenerationType.UUID)

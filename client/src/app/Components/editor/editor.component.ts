@@ -43,12 +43,12 @@ export class EditorComponent implements OnInit {
     this.addName += ' {name}';
   }
 
-  constructor(private _service:TemplateService,private _router:Router) { 
+  constructor(private _service: TemplateService, private _router: Router) {
     console.log(this._router.getCurrentNavigation().extras.state.template);
     this.template = this._router.getCurrentNavigation().extras.state.template;
     this.toggler = this.template == undefined;
-    this.title = this.template==undefined? "": this.template.name;
-    this.jsonObj=[];
+    this.title = this.template == undefined ? "" : this.template.name;
+    this.jsonObj = [];
     // this.loadCanvasFromJSON();
     // this.canvas.loadCanvasFromJsonObject(JSON.parse(this.template.templateObj));
     // document.addEventListener("DOMContentLoaded",this.canvas.loadCanvasFromJSON);
@@ -70,7 +70,7 @@ export class EditorComponent implements OnInit {
     var __CANVAS = document.getElementById('canvas2');
     let width = 711;
     let height = 1007;
-    console.log(height,width);
+    console.log(height, width);
     let pdf;
     // let pdf = new jsPDF('portrait','px',[height, width]);
     //set the orientation
@@ -118,12 +118,12 @@ export class EditorComponent implements OnInit {
     this.canvas.saveCanvasToJSON();
   }
 
-  public onClose(){
-    const temp=this.canvas.canvasObject();
+  public onClose() {
+    const temp = this.canvas.canvasObject();
     console.log(temp)
-    if(temp!=localStorage.getItem("Kanvas")){
+    if (temp != localStorage.getItem("Kanvas")) {
       alert("Not Saved");
-    }else{
+    } else {
       localStorage.clear();
       this._router.navigate(['dashboard']);
     }
@@ -137,7 +137,7 @@ export class EditorComponent implements OnInit {
     // this.canvas.changeCanvas();
   }
 
-  public loadCanvasFromJSON2(){
+  public loadCanvasFromJSON2() {
     this.canvas.loadCanvasFromJSON2();
   }
 
@@ -257,11 +257,11 @@ export class EditorComponent implements OnInit {
     this.canvas.drawingMode();
   }
 
-  public tempEmail(){
+  public tempEmail() {
     this._service.getObj(localStorage.getItem("Current")).subscribe(
       data => {
         console.log(data)
-        this.mailSender(data);  
+        this.mailSender(data);
       },
       error => {
         console.log(error)
@@ -269,22 +269,22 @@ export class EditorComponent implements OnInit {
     )
   }
 
-  public mailSender(data:any){
+  public mailSender(data: any) {
     data.forEach(i => {
       // console.log(i["tempObj"]);
-      console.log("gmail",i["gmail"]);
-      const tempObj:JSON = JSON.parse(i["tempObj"]);
+      console.log("gmail", i["gmail"]);
+      const tempObj: JSON = JSON.parse(i["tempObj"]);
       console.log(tempObj);
       setTimeout(() => {
-        localStorage.setItem('Kanva',JSON.stringify(tempObj));
+        localStorage.setItem('Kanva', JSON.stringify(tempObj));
         this.loadCanvasFromJSON2();
       }, 1000);
       let vempObj = {};
-      vempObj["email"]=i["gmail"];
-      vempObj["pdf"]=this.rasterizePDF();
+      vempObj["email"] = i["gmail"];
+      vempObj["pdf"] = this.rasterizePDF();
       this.jsonObj.push(vempObj);
       // await this.sendMail(i["gmail"]);
-          
+
       // this.loadCanvasFromJSON2();
       // this.rasterizePDF();
       // this.sendMail(i["gmail"]);
@@ -292,13 +292,13 @@ export class EditorComponent implements OnInit {
     });
     this.sendMail(this.jsonObj);
   }
-  
 
-  public sendMail(jsonObj:any) {
+
+  public sendMail(jsonObj: any) {
     console.log(this.jsonObj);
-    if(this.jsonObj[0].pdf===this.jsonObj[1].pdf){
+    if (this.jsonObj[0].pdf === this.jsonObj[1].pdf) {
       console.log("same pdf");
-    }else{
+    } else {
       console.log("different pdf");
     }
     this.jsonObj.forEach(element => {
@@ -308,10 +308,10 @@ export class EditorComponent implements OnInit {
         From: "sender mail",
         Subject: "This is changed",
         Body: "And this is the offer letter attached",
-        Attachments : [
+        Attachments: [
           {
-            name : "OfferLetter.pdf",
-            data : element.pdf
+            name: "OfferLetter.pdf",
+            data: element.pdf
             // path : ""
           }]
       }).then(
@@ -320,27 +320,63 @@ export class EditorComponent implements OnInit {
     });
   }
 
-  public saveTemplate(){
+  public saveTemplate() {
     this.saveCanvasToJSON();
-    const temp = new Template("",localStorage.getItem("Kanvas"),this.title,new Date);
+    const temp = new Template("", localStorage.getItem("Kanvas"), this.title, new Date);
     this._service.saveTemplate(temp).subscribe(
       data => console.log(data),
       error => console.log(error)
     )
   }
 
-  public updateTemplate(){
+  public updateTemplate() {
     this.saveCanvasToJSON();
-    const temp = new Template("",localStorage.getItem('Kanvas'),this.template.name,new Date);
-    this._service.updateTemplate(localStorage.getItem('Current'),temp).subscribe(
+    const temp = new Template("", localStorage.getItem('Kanvas'), this.template.name, new Date);
+    this._service.updateTemplate(localStorage.getItem('Current'), temp).subscribe(
       data => {
         console.log(data)
       },
-      error => {console.log(error)}
+      error => { console.log(error) }
     )
   }
 
   // temp = this.loadCanvasFromJSON();
-   
+
+  // toggle modal logic
+  public toggleModal() {
+    if (document.getElementById("mailModal").style.display == "flex") {
+      document.getElementById("mailModal").style.display = "none";
+    }
+    else
+      document.getElementById("mailModal").style.display = "flex";
+  }
+
+  // select candidates section
+
+  // candidates list
+  selectAllCandidates: boolean = false;
+  candidates: any[] = [
+    { id: 1, name: 'Candidate 1', selected: false },
+    { id: 2, name: 'Candidate 2', selected: false },
+    { id: 3, name: 'Candidate 3', selected: false }
+  ];
+
+  // select logic
+  selectAllItems() {
+    for (let candidate of this.candidates) {
+      candidate.selected = this.selectAllCandidates;
+    }
+  }
+
+  // select template
+  public selectedValue: string;
+  // template list
+  public templates: any[] = [
+    { value: 'Template 1' },
+    { value: 'Template 2' },
+    { value: 'Template 3' },
+  ]
+
+
 }
 

@@ -1,15 +1,61 @@
 <!-- <p>editor works!</p> -->
+<!-- e-mail modal -->
+<div id="mailModal">
+    <div class="modal-bg"></div>
+    <div class="modal-container">
+        <div class="main-content">
+
+            <div class="section">
+                <input class="search-bar" type="text" placeholder="Search">
+                <!-- <form> -->
+                <hr class="divider">
+                <div class="selectall">
+                    <input type="checkbox" [(ngModel)]="selectAllCandidates" (change)="selectAllItems()">
+                    <label>Select All Candidates</label>
+                </div>
+                <!-- candidate search bar -->
+                <div class="listitem" *ngFor="let candidate of candidates">
+                    <input type="checkbox" [(ngModel)]="candidate.selected" />
+                    <label>{{candidate.name}}</label>
+                </div>
+                <!-- </form> -->
+            </div>
+
+            <div class="section">
+                <form action="">
+                    <div *ngFor="let template of templates">
+                        <label>
+                            <input type="radio" name="options" [(ngModel)]="selectedValue"
+                                [value]="template.value">{{template.value}}
+                        </label>
+                    </div>
+                    <!-- <h1>{{selectedValue}}</h1> -->
+                </form>
+            </div>
+        </div>
+        <div class="footer">
+            <button class="btn-cancel" (click)="toggleModal();"><img
+                    src="../../../assets/svgs/material-symbols_cancel.svg" alt="close-wizard-button">Cancel</button>
+            <button class="btn-send"><img src="../../../assets/svgs/material-symbols_send-rounded.svg" alt=""> Send
+                Email</button>
+        </div>
+    </div>
+</div>
+
 <div class="containera ">
     <div class="head-section row d-flex justify-content-around navstyle">
         <div class="d-flex justify-content-space-between">
             <img src="../../../assets/img/logo-1.png" alt="">
             <div style="padding-left: 30px;">
-                <input type="text" title="fileTitle" placeholder="Untitled" [(ngModel)]="title" value="Untitled Template">
+                <input type="text" title="fileTitle" placeholder="Untitled" [(ngModel)]="title"
+                    value="Untitled Template">
             </div>
         </div>
         <div>
             <div>
-              <a class="btn-close" (click)="onClose();" style="background-color: rgb(255, 255, 255) !important; margin-top: 10px; cursor: pointer;"><img src="../../../assets/svgs/material-symbols_close.svg" alt=""> Close Editor</a>
+                <a class="btn-close" (click)="onClose();"
+                    style="background-color: rgb(255, 255, 255) !important; margin-top: 10px; cursor: pointer;"><img
+                        src="../../../assets/svgs/material-symbols_close.svg" alt=""> Close Editor</a>
             </div>
         </div>
     </div>
@@ -69,12 +115,14 @@
                 <div class="card-body">
                     <div class="input-group add-text-group">
                         <!-- <input title="textbox" type="text" class="form-control" [(ngModel)]="canvas.textString" placeholder="Any sentence"> -->
-                        <textarea class="form-control w-100"  name="textarea" [(ngModel)]="addName" cols="30" placeholder="Write your sentence" [(ngModel)]="canvas.textString" rows="10"></textarea>
+                        <textarea class="form-control w-100" name="textarea" [(ngModel)]="addName" cols="30"
+                            placeholder="Write your sentence" [(ngModel)]="canvas.textString" rows="10"></textarea>
                         <!-- buttons to add cutom fields -->
                         <button class="w-100" id="btn" (click)="doAddName()">Add Name Field</button>
                         <div class="input-group-append">
                             <span>
-                                <button id="add-text" data-tosggle="tooltip" data-placement="bottom" title="Add text" (click)="addText()">
+                                <button id="add-text" data-tosggle="tooltip" data-placement="bottom" title="Add text"
+                                    (click)="addText()">
                                     <img src="../../../assets/svgs/material-symbols_add.svg" alt="add-icon">
                                 </button>
                             </span>
@@ -89,7 +137,7 @@
                     <!-- <img class="images-item" (click)="getImgPolaroid($event)" src="../../../assets/img/logo-1.png"> -->
                     <img class="images-item" src="../../../assets/img/logo-1.png"
                         (click)="addImageOnCanvas('../../../assets/img/logo-1.png');">
-                    
+
                 </div>
             </div>
             <br />
@@ -216,7 +264,7 @@
                                 (change)="setFontFamily()">
                                 <option value="Mongolian Baiti" selected>Mongolian Baiti</option>
                                 <option value="arial">Arial</option>
-                                <option value="helvetica" >Helvetica</option>
+                                <option value="helvetica">Helvetica</option>
                                 <option value="verdana">Verdana</option>
                                 <option value="courier">Courier</option>
                                 <option value="Roboto">Roboto</option>
@@ -325,29 +373,40 @@
                     <div class="col-xl-12">
                         <div class="row">
                             <div class="col-xl-12 d-flex">
-                                <button data-toggle="tooltip" [hidden]="!toggler" data-placement="bottom" title="Save in localStorage" type="button"
-                                    class="m-1" (click)="saveTemplate();">
-                                    <img src="../../../assets/svgs/material-symbols_save.svg" alt=""> Save local</button>
+                                <button data-toggle="tooltip" [hidden]="!toggler" data-placement="bottom"
+                                    title="Save in localStorage" type="button" class="m-1" (click)="saveTemplate();">
+                                    <img src="../../../assets/svgs/material-symbols_save.svg" alt=""> Save
+                                    local</button>
 
-                                    <button data-toggle="tooltip" [hidden]="toggler" data-placement="bottom" title="Save in localStorage" type="button"
-                                    class="m-1" (click)="updateTemplate();">
-                                    <img src="../../../assets/svgs/material-symbols_save.svg" alt=""> Update local</button>
+                                <button data-toggle="tooltip" [hidden]="toggler" data-placemesnt="bottom"
+                                    title="Save in localStorage" type="button" class="m-1" (click)="updateTemplate();">
+                                    <img src="../../../assets/svgs/material-symbols_save.svg" alt=""> Update
+                                    local</button>
 
-                                    <button data-toggle="tooltip" data-placement="bottom" title="Export as pdf" type="button"
-                                    class="m-1" (click)="rasterizePDF();">
-                                    <img src="../../../assets/svgs/material-symbols_save.svg" alt=""> Export to PDF</button>
+                                <button data-toggle="tooltip" data-placement="bottom" title="Export as pdf"
+                                    type="button" class="m-1" (click)="rasterizePDF();">
+                                    <img src="../../../assets/svgs/material-symbols_save.svg" alt=""> Export to
+                                    PDF</button>
 
-                                    <button data-toggle="tooltip" data-placement="bottom" title="Export as pdf" type="button"
-                                    class="m-1" (click)="loadCanvasFromJSON();">
-                                    <img src="../../../assets/svgs/material-symbols_save.svg" alt=""> Load canvas from json</button>
-                                
-                                    <button data-toggle="tooltip" data-placement="bottom" title="Clean Canvas" type="button"
+                                <button data-toggle="tooltip" data-placement="bottom" title="Export as pdf"
+                                    type="button" class="m-1" (click)="loadCanvasFromJSON();">
+                                    <img src="../../../assets/svgs/material-symbols_save.svg" alt=""> Load canvas from
+                                    json</button>
+
+                                <button data-toggle="tooltip" data-placement="bottom" title="Clean Canvas" type="button"
                                     class="m-1" (click)="confirmClear();">
                                     <img src="../../../assets/svgs/bi_eraser-fill.svg" alt=""> Clear Template</button>
                                 <!-- send email button
                                  -->
-                                <button data-toggle="tooltip" title="Send in E-Mail" type="button" class="m-1" (click)="tempEmail();">
-                                    <img src="../../../assets/svgs/mdi_email-arrow-right.svg" alt=""> generate for all</button>
+                                <button data-toggle="tooltip" title="Send in E-Mail" type="button" class="m-1"
+                                    (click)="tempEmail();">
+                                    <img src="../../../assets/svgs/mdi_email-arrow-right.svg" alt=""> Generate
+                                    for All</button>
+                                <!-- new email button -->
+                                <button data-toggle="tooltip" title="Send in E-Mail" type="button" class="m-1"
+                                    (click)="toggleModal();">
+                                    <img src="../../../assets/svgs/mdi_email-arrow-right.svg" alt=""> Send E-Mail Wizard
+                                </button>
                             </div>
                         </div>
                     </div>

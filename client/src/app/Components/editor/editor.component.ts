@@ -38,6 +38,7 @@ export class EditorComponent implements OnInit {
 
   @ViewChild('canvas', { static: false }) canvas: FabricjsEditorComponent;
   addName: string = '';
+  router: any;
   doAddName() {
     this.canvas.textString += ' {name}';
     this.addName += ' {name}';
@@ -342,41 +343,46 @@ export class EditorComponent implements OnInit {
 
   // temp = this.loadCanvasFromJSON();
 
-  // toggle modal logic
-  public toggleModal() {
-    if (document.getElementById("mailModal").style.display == "flex") {
-      document.getElementById("mailModal").style.display = "none";
-    }
-    else
-      document.getElementById("mailModal").style.display = "flex";
+  // // toggle modal logic
+  // public toggleModal() {
+  //   if (document.getElementById("mailModal").style.display == "flex") {
+  //     document.getElementById("mailModal").style.display = "none";
+  //   }
+  //   else
+  //     document.getElementById("mailModal").style.display = "flex";
+  // }
+
+  // // select candidates section
+
+  // // candidates list
+  // selectAllCandidates: boolean = false;
+  // candidates: any[] = [
+  //   { id: 1, name: 'Candidate 1', selected: false },
+  //   { id: 2, name: 'Candidate 2', selected: false },
+  //   { id: 3, name: 'Candidate 3', selected: false }
+  // ];
+
+  // // select logic
+  // selectAllItems() {
+  //   for (let candidate of this.candidates) {
+  //     candidate.selected = this.selectAllCandidates;
+  //   }
+  // }
+
+  // // select template
+  // public selectedValue: string;
+  // // template list
+  // public templates: any[] = [
+  //   { value: 'Template 1' },
+  //   { value: 'Template 2' },
+  //   { value: 'Template 3' },
+  // ]
+
+  // navigate to candidate selection
+  public gotoCandidates() {
+    this._router.navigate(['/candidate']);
   }
 
-  // select candidates section
-
-  // candidates list
-  selectAllCandidates: boolean = false;
-  candidates: any[] = [
-    { id: 1, name: 'Candidate 1', selected: false },
-    { id: 2, name: 'Candidate 2', selected: false },
-    { id: 3, name: 'Candidate 3', selected: false }
-  ];
-
-  // select logic
-  selectAllItems() {
-    for (let candidate of this.candidates) {
-      candidate.selected = this.selectAllCandidates;
-    }
-  }
-
-  // select template
-  public selectedValue: string;
-  // template list
-  public templates: any[] = [
-    { value: 'Template 1' },
-    { value: 'Template 2' },
-    { value: 'Template 3' },
-  ]
-
-
+  m
 }
 

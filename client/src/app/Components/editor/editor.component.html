@@ -1,24 +1,23 @@
 <!-- <p>editor works!</p> -->
 <!-- e-mail modal -->
-<div id="mailModal">
+<!-- <div id="mailModal">
     <div class="modal-bg"></div>
     <div class="modal-container">
         <div class="main-content">
 
             <div class="section">
                 <input class="search-bar" type="text" placeholder="Search">
-                <!-- <form> -->
                 <hr class="divider">
                 <div class="selectall">
                     <input type="checkbox" [(ngModel)]="selectAllCandidates" (change)="selectAllItems()">
                     <label>Select All Candidates</label>
                 </div>
-                <!-- candidate search bar -->
+
                 <div class="listitem" *ngFor="let candidate of candidates">
                     <input type="checkbox" [(ngModel)]="candidate.selected" />
                     <label>{{candidate.name}}</label>
                 </div>
-                <!-- </form> -->
+
             </div>
 
             <div class="section">
@@ -29,7 +28,6 @@
                                 [value]="template.value">{{template.value}}
                         </label>
                     </div>
-                    <!-- <h1>{{selectedValue}}</h1> -->
                 </form>
             </div>
         </div>
@@ -40,7 +38,7 @@
                 Email</button>
         </div>
     </div>
-</div>
+</div> -->
 
 <div class="containera ">
     <div class="head-section row d-flex justify-content-around navstyle">
@@ -407,8 +405,8 @@
                                     <img src="../../../assets/svgs/mdi_email-arrow-right.svg" alt=""> Generate
                                     for All</button>
                                 <!-- new email button -->
-                                <button data-toggle="tooltip" title="Send in E-Mail" type="button" class="m-1"
-                                    (click)="toggleModal();">
+                                <button title="Send in E-Mail" type="button" class="m-1"
+                                    (click)="gotoCandidates()">
                                     <img src="../../../assets/svgs/mdi_email-arrow-right.svg" alt=""> Send E-Mail Wizard
                                 </button>
                             </div>

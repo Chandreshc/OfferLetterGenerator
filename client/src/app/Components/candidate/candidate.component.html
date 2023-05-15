@@ -1,0 +1,26 @@
+
+<div class="wrapper">
+    <div class="nav">
+        <img src="../../../assets/img/logo-1.png" alt="arguosft-logo">
+    </div>
+    <div class="section">
+        <input class="search-bar" type="text" placeholder="Search">
+        <!-- <form> -->
+        <hr class="divider">
+        <div class="selectall">
+            <input type="checkbox" [(ngModel)]="selectAllCandidates" (change)="selectAllItems()">
+            <label>Select All Candidates</label>
+        </div>
+        <!-- candidate search bar -->
+        <div class="listitem" *ngFor="let candidate of candidates">
+            <input type="checkbox" [(ngModel)]="candidate.selected" />
+            <label>{{candidate.name}}</label>
+        </div>
+        <!-- </form> -->
+    </div>
+    <div class="footer"> 
+        <button class="btn-cancel"><img
+                src="../../../assets/svgs/material-symbols_cancel.svg" alt="close-wizard-button">Cancel</button>
+        <button class="btn-send" (click)="gotoTemplates()"><img src="../../../assets/svgs/material-symbols_send-rounded.svg" alt=""> Select Template</button>
+    </div>
+</div>

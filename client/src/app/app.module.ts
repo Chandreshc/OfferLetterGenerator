@@ -9,12 +9,16 @@ import { EditorComponent } from './Components/editor/editor.component';
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HttpHeaderResponse, HttpHeaders, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { CandidateComponent } from './Components/candidate/candidate.component';
+import { TemplatesComponent } from './Components/templates/templates.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EditorComponent,
-    DashboardComponent
+    DashboardComponent,
+    CandidateComponent,
+    TemplatesComponent
   ],
   imports: [
     BrowserModule,

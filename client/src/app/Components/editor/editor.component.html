@@ -115,10 +115,14 @@
                 <div class="card-body">
                     <div class="input-group add-text-group">
                         <!-- <input title="textbox" type="text" class="form-control" [(ngModel)]="canvas.textString" placeholder="Any sentence"> -->
-                        <textarea class="form-control w-100" name="textarea" [(ngModel)]="addName" cols="30"
-                            placeholder="Write your sentence" [(ngModel)]="canvas.textString" rows="10"></textarea>
+                        <textarea class="form-control w-100"  name="textarea" [(ngModel)]="addName" cols="30" placeholder="Write your sentence" [(ngModel)]="canvas.textString" rows="5"></textarea>
                         <!-- buttons to add cutom fields -->
                         <button class="w-100" id="btn" (click)="doAddName()">Add Name Field</button>
+                        <button class="w-100" id="btn" (click)="doAddPosition()">Add Position Field</button>
+                        <button class="w-100" id="btn" (click)="doAddCtc()">Add CTC Field</button>
+                        <button class="w-100" id="btn" (click)="doAddOfferDate()">Add Date of Offer Field</button>
+                        <button class="w-100" id="btn" (click)="doAddJoiningDate()">Add Date of Joining Field</button>
+                        <button class="w-100" id="btn" (click)="doAddAcceptanceDate()">Add Date of Acceptance Field</button>
                         <div class="input-group-append">
                             <span>
                                 <button id="add-text" data-tosggle="tooltip" data-placement="bottom" title="Add text"
@@ -235,12 +239,12 @@
                     <div class="custom-item" *ngIf="canvas.selected  && canvas.selected.type == 'group'">Group Selected
                     </div>
                     <div class="custom-item" *ngIf="!canvas.selected">No items selected</div>
-                    <div class="custom-item" *ngIf="canvas.selected && canvas.selected.type != 'group'">
+                    <!-- <div class="custom-item" *ngIf="canvas.selected && canvas.selected.type != 'group'">
                         <div class="custom-item-title">ID</div>
                         <div class="custom-item-body">
                             <input type="text" class="form-control" [(ngModel)]="canvas.props.id" (keyup)="setId()">
                         </div>
-                    </div>
+                    </div> -->
                     <div class="custom-item" *ngIf="canvas.selected && canvas.selected.type != 'group'">
                         <div class="custom-item-title">Opacity</div>
                         <div class="custom-item-body">

@@ -42,6 +42,31 @@ export class EditorComponent implements OnInit {
     this.canvas.textString += ' {name}';
     this.addName += ' {name}';
   }
+  addPosition: string = '';
+  doAddPosition() {
+    this.canvas.textString += ' {position}';
+    this.addName += ' {position}';
+  }
+  addCtc: string = '';
+  doAddCtc() {
+    this.canvas.textString += ' {ctc}';
+    this.addName += ' {ctc}';
+  }
+  addOfferDate: string = '';
+  doAddOfferDate() {
+    this.canvas.textString += ' {Offerdate}';
+    this.addName += ' {Offerdate}';
+  }
+  addAcceptanceDate: string = '';
+  doAddAcceptanceDate() {
+    this.canvas.textString += ' {acceptDate}';
+    this.addName += ' {acceptDate}';
+  }
+  addJoiningDate: string = '';
+  doAddJoiningDate() {
+    this.canvas.textString += ' {joiningDate}';
+    this.addName += ' {joiningDate}';
+  }
 
   constructor(private _service: TemplateService, private _router: Router) {
     console.log(this._router.getCurrentNavigation().extras.state.template);

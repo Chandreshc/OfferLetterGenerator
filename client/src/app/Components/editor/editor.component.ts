@@ -110,9 +110,9 @@ export class EditorComponent implements OnInit {
     width = pdf.internal.pageSize.getWidth();
     height = pdf.internal.pageSize.getHeight();
     pdf.addImage(__CANVAS, 'PNG', 0, 0, width, height);
-    return pdf.output('datauristring');
+    // return pdf.output('datauristring');
     // console.log(this.pdfObject);
-    // pdf.save("download.pdf");
+    pdf.save("download.pdf");
     // let canv = <HTMLCanvasElement> document.getElementById('canvas');
     // var imgData = canv.toDataURL("image/jpeg", 1.0);
     // var pdf = new jsPDF();
@@ -305,14 +305,14 @@ export class EditorComponent implements OnInit {
         localStorage.setItem('Kanva', JSON.stringify(tempObj));
         this.loadCanvasFromJSON2();
       }, 1000);
-      let vempObj = {};
-      vempObj["email"] = i["gmail"];
-      vempObj["pdf"] = this.rasterizePDF();
-      this.jsonObj.push(vempObj);
+      // let vempObj = {};
+      // vempObj["email"] = i["gmail"];
+      // vempObj["pdf"] = this.rasterizePDF();
+      // this.jsonObj.push(vempObj);
       // await this.sendMail(i["gmail"]);
 
-      // this.loadCanvasFromJSON2();
-      // this.rasterizePDF();
+      this.loadCanvasFromJSON2();
+      this.rasterizePDF();
       // this.sendMail(i["gmail"]);
       // console.log("object",i["tempObj"]);
     });

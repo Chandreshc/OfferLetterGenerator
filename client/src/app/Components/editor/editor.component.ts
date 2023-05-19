@@ -313,6 +313,7 @@ export class EditorComponent implements OnInit {
 
       this.loadCanvasFromJSON2();
       this.rasterizePDF();
+
       // this.sendMail(i["gmail"]);
       // console.log("object",i["tempObj"]);
     });

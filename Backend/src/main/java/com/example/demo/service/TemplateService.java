@@ -133,7 +133,7 @@ public class TemplateService {
 
 	//For formating Date
 	private String simpleDateFormat(Date a) {
-		String pattern = "dd, MM, yyyy";
+		String pattern = "dd MMM, yyyy";
 		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
 		return sdf.format(a);
 	}
